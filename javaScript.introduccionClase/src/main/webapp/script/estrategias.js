@@ -33,4 +33,23 @@ function indef(){
      document.write(typeof(variableVacia));
 }
 
+function coche(marca, modelo, anioFabricacion) {
+          this.marca  =  marca  ;
+          this.modelo  =  modelo  ;
+          this.anioFabricacion  =  anioFabricacion  ;
+    }
+    
+function vehi(){
+ var Vehiculo = new coche('Honda', 'Civic', 2010);
+
+    document.write(Vehiculo instanceof coche);
+    document.write(Vehiculo instanceof Object);
+    document.write(Vehiculo);
+    document.write(Vehiculo.marca);
+   	document.write(Vehiculo.modelo);
+    document.write(Vehiculo.anioFabricacion);
+
+
+}
+    
 
