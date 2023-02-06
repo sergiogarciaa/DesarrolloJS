@@ -1,8 +1,8 @@
-function char(){
-	let text = prompt("Introduce una frase");
-	for(let i = 0; i < text.length; i++){
-		document.write(text.charAt(i) + "<br>");
-	}
-	
+function separar(){
+    let palabra = prompt("Introduce una palabra: ");
+    let palabraFinal="";
+    for(var i=0;i< palabra.length;i++){
+        palabraFinal += palabra[i] + "|";
+    }
+    alert(palabraFinal);
 }
-
