@@ -1,4 +1,4 @@
-/*Desarrollar una aplicación para la gestión de una gasolinera.
+package gasolinera;/*Desarrollar una aplicación para la gestión de una gasolinera.
 Hay que registrar cada vez que un cliente realiza un repostaje. Existen dos tipos de repostajes:
         NORMAL: se guarda la fecha, los litros y el importe.
         FACTURA: se guarda la fecha, los litros, el importe, el DNI del cliente y la matrícula del vehículo.
@@ -43,10 +43,14 @@ public class MainGasolinera {
                     listagF.add(gF.RepostajeFactura());
                     System.out.println("Repostaje Correcto: " + listagF.get(listagF.size()-1).toString());
                     break;
-                /*case 3:
-                    //llamams al método
-                    listagN = gN.VerRepostajes(listagN);
-                    break;*/
+                case 3:
+                    //llamamos al método
+                    for(int i = 0; i < listagN.size(); i++){
+                        System.out.println(listagN.get(i));                    }
+                    for(int i = 0; i < listagF.size(); i++){
+                        System.out.println(listagF.get(i));
+                    }
+                    break;
                 case 4:
                     cerrarMenu = true;
                     break;
