@@ -77,8 +77,8 @@ public class MainGasolinera {
                     // Modificar Litros
                     System.out.println("Desea modificar los litros, se modificará tambien el coste de forma automatizada: [Si/No]");
                     borrar = eliminar.next();
-                    s = borrar.toLowerCase();
-                    if (s.equals("si")) {
+                    borrar.toLowerCase();
+                    if (borrar.equals("si")) {
                         System.out.println("Litros para modificar");
                         int nLitros = nuevoLitro.nextInt();
                         listagN.get(0).setlitros(nLitros);
@@ -101,8 +101,8 @@ public class MainGasolinera {
                     // Modificar registros
                     System.out.println("Desea modificar registros? [Si/No]");
                     borrar = eliminar.next();
-                    s = borrar.toLowerCase();
-                    if (s.equals("si")) {
+                    borrar.toLowerCase();
+                    if (borrar.equals("si")) {
                         System.out.println("Desea modificar los litros? [Si/No]");
                         modify = modificar.next();
                         modify.toLowerCase();
