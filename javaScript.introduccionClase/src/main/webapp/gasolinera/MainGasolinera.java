@@ -67,8 +67,8 @@ public class MainGasolinera {
                     // Eliminar repostaje
                     System.out.println("¿Desea eliminar algún repostaje? [Si/No]");
                     String borrar = eliminar.next();
-                    String s = borrar.toLowerCase();
-                    if (s.equals("si")) {
+                    borrar.toLowerCase();
+                    if (borrar.equals("si")) {
                         System.out.println("Qué ID desea eliminar");
                         int id = respuesta.nextInt();
                         listagN.remove(id);
