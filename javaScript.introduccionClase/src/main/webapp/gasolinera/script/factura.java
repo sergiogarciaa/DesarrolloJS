@@ -13,13 +13,14 @@ public class factura {
      * será necesario definirlo en la clase de forma explícita.
      */
 
-    public factura(String fecha, int litros, float importe, String DNI, String matricula) {
+    public factura(String fecha, int litros, float importe, String DNI, String matricula, int id) {
         super();
         this.fecha = fecha;
         this.litros = litros;
         this.importe = importe;
         this.DNI = DNI;
         this.matricula = matricula;
+        this.id = id;
     }
 
     public factura() {
@@ -36,6 +37,7 @@ public class factura {
     private float importe;
     private String DNI;
     private String matricula;
+    private int id;
 
     //Getters y Setters
     /*
@@ -49,34 +51,46 @@ public class factura {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+    // ---------------
     public int getlitros() {
         return litros;
     }
     public void setlitros(int litros) {
         this.litros = litros;
     }
+    // ---------------
     public float getimporte(){
         return importe;
     }
     public void setimporte(float importe) {
         this.importe = importe;
     }
+    // ---------------
     public String getDNI(){
         return DNI;
     }
     public void setDNI(String DNI){
         this.DNI = DNI;
     }
+    // ---------------
     public String getmatricula(){
         return matricula;
     }
     public void setmatricula(String matricula){
         this.matricula = matricula;
     }
+    // ---------------
+    public int getId(){
+        return id;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+    // ---------------
     //Sobre escritura toString
     @Override
     public String toString() {
-        return "Gasolinera Factura [fecha=" + fecha + ", litros=" + litros + ", importe=" + importe + ", DNI=" + DNI + ", matricula=" + matricula + "]";
+        return "Gasolinera Factura [fecha=" + fecha + ", litros=" + litros + ", importe=" + importe + "€, DNI=" + DNI + ", matricula=" + matricula + ", ID = " + id + "]";
     }
 
     public factura RepostajeFactura(){
@@ -85,7 +99,6 @@ public class factura {
         LocalTime fecha = LocalTime.now();
         System.out.println("Echar Gasolina Normal: ");
         Scanner litrosSC = new Scanner(System.in);
-        Scanner importeSC = new Scanner(System.in);
         Scanner dniSC = new Scanner(System.in);
         Scanner matriculaSC = new Scanner(System.in);
 
@@ -113,6 +126,7 @@ public class factura {
         gfVacio.setimporte(cImporte);
         gfVacio.setDNI(nDNI);
         gfVacio.setmatricula(nMatricula);
+        gfVacio.setId(id++);
 
         return gfVacio;
     }

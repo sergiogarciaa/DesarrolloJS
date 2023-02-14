@@ -13,12 +13,16 @@ public class normal {
      * será necesario definirlo en la clase de forma explícita.
      */
 
-    public normal(String fecha, int litros, float importe) {
+
+
+    public normal(String fecha, int litros, float importe, int id) {
         super();
         this.fecha = fecha;
         this.litros = litros;
         this.importe = importe;
+        this.id = id;
     }
+
 
     public normal() {
         super();
@@ -26,12 +30,13 @@ public class normal {
 
     //Atributos
     /*
-     * Modificador private: solo la misma clase podrá acceder a los
+     * solo la misma clase podrá acceder a los
      * atributos de forma directa.
      */
     private String fecha;
     private int litros;
     private float importe;
+    private int id;
 
     //Getters y Setters
     /*
@@ -45,22 +50,32 @@ public class normal {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+    // ---------------
     public int getlitros() {
         return litros;
     }
     public void setlitros(int litros) {
         this.litros = litros;
     }
+    // ---------------
     public float getimporte(){
         return importe;
     }
     public void setimporte(float importe) {
         this.importe = importe;
     }
+    // ---------------
+    public int getid(){
+        return id;
+    }
+    public void setid(int id){
+        this.id = id;
+    }
+    // ---------------
     //Sobre escritura toString
     @Override
     public String toString() {
-        return "Gasolinera Normal [fecha=" + fecha + ", litros=" + litros + ", importe=" + importe + "]";
+        return "Gasolinera Normal [fecha=" + fecha + ", litros=" + litros + ", importe=" + importe + ", ID = " + id + "]";
     }
 
     public normal RepostajeNormal(){
@@ -84,6 +99,7 @@ public class normal {
         gnVacio.setFecha(dtf.format(fecha));
         gnVacio.setlitros(cLitros);
         gnVacio.setimporte(cImporte);
+        gnVacio.setid(id++);
         return gnVacio;
     }
 }
