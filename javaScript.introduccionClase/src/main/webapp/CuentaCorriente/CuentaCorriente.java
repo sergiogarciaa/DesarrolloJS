@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 /**
  * Modelo de las cuentas corrientes a gestionar
- * @author garfe *
  */
 public class CuentaCorriente {
 
