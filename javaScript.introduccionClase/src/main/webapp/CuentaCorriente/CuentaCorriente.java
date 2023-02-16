@@ -1,3 +1,13 @@
+/*Se deberá diseñar una clase llamada "CuentaCorriente" que almacenará los siguientes datos (atributos de la case): dni (un campo alfanumérico), nombre del titular (un campo tipo texto) y el saldo (tipo numérico con decimales).
+Además de las propiedades indicadas anteriormente, deberá tener una serie de acciones (métodos); todos ellos públicos (public):
+
+crearCuenta: se le pasará como parámetro el dni y el nombre del titular, siendo el saldo inicial 0,0.
+ingresarDinero: se pasará como parámetro la cantidad a ingresar y se sumará al saldo actual.
+mostrarInformación: mostrará la información disponible de la cuenta corriente.
+sacarDinero: se pasará como parámetro la cantidad de dinero que se quiere sacar y se devolverá si hay suficiente saldo para realizar la operación.
+*/
+
+
 package CuentaCorriente;
 
 import java.util.List;
@@ -76,9 +86,9 @@ public class CuentaCorriente {
         Scanner entradaNombreTitular = new Scanner(System.in);
         String opcionEntradaDni;
         String opcionEntradaNombreTitular;
-        System.out.println("Introduza el DNI del titular: ");
+        System.out.println("Introduzca el DNI del titular [EJ: 73298749-P]: ");
         opcionEntradaDni = entradaDni.next();
-        System.out.println("Introduza el nombre completo del titular: ");
+        System.out.println("Introduzca el nombre completo del titular: ");
         opcionEntradaNombreTitular = entradaNombreTitular.next();
 
         System.out.println("----------------------------------------------------------------------");
@@ -121,7 +131,7 @@ public class CuentaCorriente {
             System.out.println("Saldo anterior: " +saldoActual+ " Saldo ingresado: " +ingreso);
             System.out.println("El saldo actual es " + saldoNuevo);
         }else {
-            System.out.println("No existe cuenta asociada a ese DNI: "+opcionEntradaDni);
+            System.err.println("No existe cuenta asociada a ese DNI: "+opcionEntradaDni);
             return bd;
         }
         System.out.println("----------------------------------------------------------------------");
@@ -149,19 +159,19 @@ public class CuentaCorriente {
         }
 
         if(esEncontrado) {
-            System.out.println("Cuánto desea retirar: ");
+            System.out.println("Dispone actualmente de: " + bd.get(contador).getSaldo() + " €");
+            System.out.println("¿Cuánto desea retirar?: ");
             Scanner retiraSaldo = new Scanner(System.in);
             double retirada = retiraSaldo.nextDouble();
             // Si el saldo de la cuenta es 0 no puede retirar
             if (bd.get(contador).getSaldo() <= 0){
-                System.out.println("No tiene saldo suficiente en la cuenta");
-                return bd;
+                System.err.println("No tiene saldo suficiente en la cuenta");
             }
            // Si es mayor que 0 puede retirar
             else if(bd.get(contador).getSaldo() > 0){
                 // Si la cantidad que quiere retirar es mayor que el saldo de la cuenta no puede retirar
                 if (retirada > bd.get(contador).getSaldo()){
-                    System.out.println("No puede retirar más dinero del que tiene");
+                    System.err.println("No puede retirar más dinero del que tiene");
                 }
                 // Si la cantidad que quiere retirar está dentro del margen del saldo se puede
                 else {
@@ -175,7 +185,7 @@ public class CuentaCorriente {
         }
         //
         else {
-            System.out.println("No existe cuenta asociada a ese DNi");
+            System.err.println("No existe cuenta asociada a ese DNi");
             return bd;
         }
         System.out.println("----------------------------------------------------------------------");
@@ -207,7 +217,7 @@ public class CuentaCorriente {
                 System.out.println("Saldo: " + bd.get(contador).getSaldo());
         }
         else{
-            System.out.println("No existe cuenta asociada a ese DNI: " + nIntroducido);
+            System.err.println("No existe cuenta asociada a ese DNI: " + nIntroducido);
             return bd;
         }
         System.out.println("----------------------------------------------------------------------");
