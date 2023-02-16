@@ -10,6 +10,7 @@ sacarDinero: se pasará como parámetro la cantidad de dinero que se quiere saca
 
 package CuentaCorriente;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -80,148 +81,80 @@ public class CuentaCorriente {
 
     //Métodos
     public CuentaCorriente crearCuenta () {
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("CREAR CUENTA: ");
-        Scanner entradaDni = new Scanner(System.in);
-        Scanner entradaNombreTitular = new Scanner(System.in);
         String opcionEntradaDni;
         String opcionEntradaNombreTitular;
-        System.out.println("Introduzca el DNI del titular [EJ: 73298749-P]: ");
-        opcionEntradaDni = entradaDni.next();
-        System.out.println("Introduzca el nombre completo del titular: ");
-        opcionEntradaNombreTitular = entradaNombreTitular.next();
 
-        System.out.println("----------------------------------------------------------------------");
+        System.out.println("CREAR CUENTA: ");
 
-        //constructor vacío para crear cuenta
+        System.out.println("Introduza el DNI del titular: ");
+        opcionEntradaDni = sc.next();
+
+        System.out.println("Introduza el nombre completo del titular: ");
+        opcionEntradaNombreTitular = sc.next();
+
+        //Opción 1, constructor vacío
         CuentaCorriente cccVacio = new CuentaCorriente();
         cccVacio.setDni(opcionEntradaDni);
         cccVacio.setNombreTitular(opcionEntradaNombreTitular);
         cccVacio.setSaldo(0);
         return cccVacio;
+
+        //Opción 2, constructor con todos los campos
+		/*CuentaCorriente cccInicializado = new CuentaCorriente(opcionEntradaDni, opcionEntradaNombreTitular, 0);
+		return cccInicializado;*/
     }
 
-    public List<CuentaCorriente> ingresoCuenta(List<CuentaCorriente> bd) { // bd es la lista del MAIN la cual guarda la informacion de usuarios
+    public List<CuentaCorriente> ingresoCuenta(List<CuentaCorriente> listaCcc) { // bd es la lista del MAIN la cual guarda la informacion de usuarios
+        Scanner sc = new Scanner(System.in); 
+
         System.out.println("INGRESO CUENTA: ");
         //pedir dni
-        Scanner entradaDni = new Scanner(System.in);
-        System.out.println("Introduzca el DNI de la cuenta: ");
-        String opcionEntradaDni = entradaDni.next();
+        System.out.println("Indique dni de cuenta: ");
+        String opcionEntradaDni = sc.next();
+
         //para buscar la cuenta lo haremos con un foreach con nombre cuenta que recorrera bd (bd es la lista del main)
-        // El contador sumará hasta encontrar el usuario que se busca.
+        // EL CONTADOR SE ESTABLECE EN 0 Y CUANDO ENCUENTRA LA CUENTA EMPIEZA A SUMARSE HASTA LA CANTIDAD QUE TENÍA ESA CUENTA
         int contador = 0;
         boolean esEncontrado = false;
-        for(CuentaCorriente cuenta: bd) {
-            String dniBd = cuenta.getDni();
-            if(dniBd.equals(opcionEntradaDni)) {
-                esEncontrado = true;
-                break;
-            }
-            // Empieza a buscar el usuario una vez comprobado que ese usuario existe
-            contador++;
-        }
+       
 
-        if(esEncontrado) {
-            System.out.println("Indique saldo a ingresar: ");
-            Scanner entradaIngreso = new Scanner(System.in);
-            double ingreso = entradaIngreso.nextDouble();
-            double saldoActual = bd.get(contador).getSaldo();
-            bd.get(contador).setSaldo(saldoActual+ingreso);
-            double saldoNuevo = saldoActual+ingreso;
-            System.out.println("Saldo anterior: " +saldoActual+ " Saldo ingresado: " +ingreso);
-            System.out.println("El saldo actual es " + saldoNuevo);
-        }else {
-            System.err.println("No existe cuenta asociada a ese DNI: "+opcionEntradaDni);
-            return bd;
-        }
-        System.out.println("----------------------------------------------------------------------");
-        return bd;
+
+        for(int i = 0; i < listaCcc.length(); i++){
+            if(listaCcc[i].getDni.equals(opcionEntradaDni)){
+
+                System.out.println("Indique saldo a ingresar: ");
+                double ingreso = sc.nextDouble();
+
+                double saldoActual = listaCcc[i].getSaldo();
+                listaCcc[i].setSaldo(saldoActual+ingreso);
+
+                System.out.println("Saldo anterior: " + saldoActual + " Saldo ingresado: " + ingreso);
+                System.out.println("El saldo actual es " + listaCcc[i].getSaldo());
+                return listaCcc;
+            }
+        } 
+
+        System.out.println("No existe cuenta asociada a ese DNI: "+ opcionEntradaDni);
+        return listaCcc; 
     }
 
-    public List<CuentaCorriente> retiradaCuenta(List<CuentaCorriente> bd) { // bd es la lista del MAIN la cual guarda la informacion de usuarios
-        System.out.println("RETIRADA CUENTA: ");
-        //pedir dni
-        Scanner lectorDni = new Scanner(System.in);
-        System.out.println("Introduzca el DNI de la cuenta: ");
-        String dniIntroducido = lectorDni.next();
-        //para buscar la cuenta lo haremos con un foreach con nombre cuenta que recorrera bd (bd es la lista del main)
-        // El contador sumará hasta encontrar el usuario que se busca.
-        int contador = 0;
-        boolean esEncontrado = false;
-        for(CuentaCorriente cuenta: bd) {
-            String dniBd = cuenta.getDni();
-            if(dniBd.equals(dniIntroducido)) {
-                esEncontrado = true;
-                break;
-            }
-            // Empieza a buscar el usuario una vez comprobado que ese usuario existe
-            contador++;
-        }
-
-        if(esEncontrado) {
-            System.out.println("Dispone actualmente de: " + bd.get(contador).getSaldo() + " €");
-            System.out.println("¿Cuánto desea retirar?: ");
-            Scanner retiraSaldo = new Scanner(System.in);
-            double retirada = retiraSaldo.nextDouble();
-            // Si el saldo de la cuenta es 0 no puede retirar
-            if (bd.get(contador).getSaldo() <= 0){
-                System.err.println("No tiene saldo suficiente en la cuenta");
-            }
-           // Si es mayor que 0 puede retirar
-            else if(bd.get(contador).getSaldo() > 0){
-                // Si la cantidad que quiere retirar es mayor que el saldo de la cuenta no puede retirar
-                if (retirada > bd.get(contador).getSaldo()){
-                    System.err.println("No puede retirar más dinero del que tiene");
-                }
-                // Si la cantidad que quiere retirar está dentro del margen del saldo se puede
-                else {
-                    double saldoActual = bd.get(contador).getSaldo();
-                    bd.get(contador).setSaldo(saldoActual - retirada);
-                    double saldoNuevo = saldoActual - retirada;
-                    System.out.println("Saldo anterior: " + saldoActual + " Saldo retirado: " + retirada);
-                    System.out.println("El saldo actual es " + saldoNuevo);
-                }
-            }
-        }
-        //
-        else {
-            System.err.println("No existe cuenta asociada a ese DNi");
-            return bd;
-        }
-        System.out.println("----------------------------------------------------------------------");
-        return bd;
+    public ArrayList<CuentaCorriente> mostrarCuentasUsuario(String dniUsuario){
+        return null;
     }
+    public String MostrarinformacionList(List<CuentaCorriente> bd){
+        Scanner sc = new Scanner(System.in);
 
-    public List<CuentaCorriente> MostrarinformacionList(List<CuentaCorriente> bd){
-        Scanner lector = new Scanner(System.in);
         System.out.println("MOSTRAR INFORMACION:");
-        System.out.println("-------------------");
-        System.out.println("Introduzca su DNI");
-        String nIntroducido = lector.next();
         // Pediremos el DNI para mostrar la informacion de esa cuenta
-        boolean encontrado = false;
-        // Con el contador indicamos que usuario es, si es el primero, segundo, lo que tarde en encontrarlo
-        int contador = 0;
-        for (CuentaCorriente info : bd) {
-            String guardaDni = info.getDni();
-            if (guardaDni.equals(nIntroducido)) {
-                encontrado = true;
-                break;
-            }
-            contador++;
-        }
-        if(encontrado){
-            // le pasamos el contador para que sepa de quien queremos la informacion
-                System.out.println("Nombre del titular: " + bd.get(contador).getNombreTitular());
-                System.out.println("DNI: " + bd.get(contador).getDni());
-                System.out.println("Saldo: " + bd.get(contador).getSaldo());
-        }
-        else{
-            System.err.println("No existe cuenta asociada a ese DNI: " + nIntroducido);
-            return bd;
-        }
-        System.out.println("----------------------------------------------------------------------");
-        return bd;
-    }
+        String mostrarInfo = sc.next();
 
+        for(int i = 0; i < listaCcc.length(); i++){
+            if(listaCcc[i].getDni.equals(mostrarInfo)){
+                return listaCcc[i].toString();
+            }
+        }
+        return "No existe cuenta asociada a ese DNI: " + mostrarInfo;
+    }
 }
