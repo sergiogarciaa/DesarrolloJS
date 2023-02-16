@@ -10,7 +10,7 @@ public class principal {
         //Inicializar el tipo cuenta
         CuentaCorriente ccc = new CuentaCorriente();
         //Listado de cuentas (BD)
-        List<CuentaCorriente> listaCcc = new ArrayList<>();
+        List<CuentaCorriente> bd = new ArrayList<>();
 
         // Imprimir el menú por consola
         // Scanner con la opción del usuario
@@ -26,17 +26,18 @@ public class principal {
 
             switch (opcion) {
                 case 1:
-                    listaCcc.add(ccc.crearCuenta());
-                    System.out.println("Cuenta creada: " + listaCcc.get(listaCcc.size()-1).toString());
+                    bd.add(ccc.crearCuenta());
+                    System.out.println("Cuenta creada: " + bd.get(bd.size()-1).toString());
                     break;
                 case 2:
                     //llamams al método
-                    listaCcc = ccc.ingresoCuenta(listaCcc);
+                    bd = ccc.ingresoCuenta(bd);
                     break;
                 case 3:
+                    bd = ccc.retiradaCuenta(bd);
                     break;
                 case 4:
-                    listaCcc = ccc.MostrarinformacionList(listaCcc);
+                    bd = ccc.MostrarinformacionList(bd);
                     break;
                 case 5:
                     cerrarMenu = true;
