@@ -1,3 +1,13 @@
+/*Se deberá diseñar una clase llamada "CuentaCorriente" que almacenará los siguientes datos (atributos de la case): dni (un campo alfanumérico), nombre del titular (un campo tipo texto) y el saldo (tipo numérico con decimales).
+Además de las propiedades indicadas anteriormente, deberá tener una serie de acciones (métodos); todos ellos públicos (public):
+
+crearCuenta: se le pasará como parámetro el dni y el nombre del titular, siendo el saldo inicial 0,0.
+ingresarDinero: se pasará como parámetro la cantidad a ingresar y se sumará al saldo actual.
+mostrarInformación: mostrará la información disponible de la cuenta corriente.
+sacarDinero: se pasará como parámetro la cantidad de dinero que se quiere sacar y se devolverá si hay suficiente saldo para realizar la operación.
+*/
+
+
 package CuentaCorriente;
 
 import java.util.ArrayList;
@@ -110,6 +120,7 @@ public class CuentaCorriente {
         boolean esEncontrado = false;
        
 
+
         for(int i = 0; i < listaCcc.length(); i++){
             if(listaCcc[i].getDni.equals(opcionEntradaDni)){
 
@@ -118,7 +129,6 @@ public class CuentaCorriente {
 
                 double saldoActual = listaCcc[i].getSaldo();
                 listaCcc[i].setSaldo(saldoActual+ingreso);
-
 
                 System.out.println("Saldo anterior: " + saldoActual + " Saldo ingresado: " + ingreso);
                 System.out.println("El saldo actual es " + listaCcc[i].getSaldo());
@@ -145,7 +155,6 @@ public class CuentaCorriente {
                 return listaCcc[i].toString();
             }
         }
-
         return "No existe cuenta asociada a ese DNI: " + mostrarInfo;
     }
 }
