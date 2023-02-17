@@ -63,26 +63,30 @@ public class MainGasolinera {
                     for (gasolinera.normal normal: listagN) {
                         System.out.println(normal);
                     }
-
+                    int id = 0;
                     // Eliminar repostaje
                     System.out.println("¿Desea eliminar algún repostaje? [Si/No]");
                     String borrar = eliminar.next();
                     borrar.toLowerCase();
                     if (borrar.equals("si")) {
                         System.out.println("Qué ID desea eliminar");
-                        int id = respuesta.nextInt();
+                        id = respuesta.nextInt();
                         listagN.remove(id);
                     }
 
                     // Modificar Litros
+
                     System.out.println("Desea modificar los litros, se modificará tambien el coste de forma automatizada: [Si/No]");
                     borrar = eliminar.next();
                     borrar.toLowerCase();
                     if (borrar.equals("si")) {
-                        System.out.println("Litros para modificar");
+                        System.out.println("De que ID desea modificar los litros? se automatizará el coste: ");
+                        id = respuesta.nextInt();
+
+                        System.out.println("Litros?");
                         int nLitros = nuevoLitro.nextInt();
-                        listagN.get(0).setlitros(nLitros);
-                        listagN.get(0).setimporte((nLitros * 5) / 9);
+                        listagN.get(id).setlitros(nLitros);
+                        listagN.get(id).setimporte((nLitros * 5) / 9);
                     }
 
                     break;
@@ -95,7 +99,7 @@ public class MainGasolinera {
                     String a = quitar.toLowerCase();
                     if (a.equals("si")) {
                         System.out.println("Qué ID desea eliminar");
-                        int id = respuesta.nextInt();
+                        id = respuesta.nextInt();
                         listagF.remove(id);
                     }
                     // Modificar registros
@@ -103,14 +107,17 @@ public class MainGasolinera {
                     borrar = eliminar.next();
                     borrar.toLowerCase();
                     if (borrar.equals("si")) {
+                        System.out.println("De qué ID desea modificar los datos?");
+                        id = respuesta.nextInt();
+
                         System.out.println("Desea modificar los litros? [Si/No]");
                         modify = modificar.next();
                         modify.toLowerCase();
                         if (modify.equals("si")) {
                             System.out.println("Litros para modificar");
                             int nLitros = nuevoLitro.nextInt();
-                            listagF.get(0).setlitros(nLitros);
-                            listagF.get(0).setimporte((nLitros * 5) / 9);
+                            listagF.get(id).setlitros(nLitros);
+                            listagF.get(id).setimporte((nLitros * 5) / 9);
                         }
                         System.out.println("Desea modificar el DNI? [Si/No]");
                         modify = modificar.next();
@@ -118,7 +125,7 @@ public class MainGasolinera {
                         if (modify.equals("si")) {
                             System.out.println("Introduzca un nuevo DNI");
                             modify = modificar.next();
-                            listagF.get(0).setDNI(modify);
+                            listagF.get(id).setDNI(modify);
                         }
                         System.out.println("Desea modificar la matrícula? [Si/No]");
                         modify = modificar.next();
@@ -126,7 +133,7 @@ public class MainGasolinera {
                         if (modify.equals("si")) {
                             System.out.println("Introduzca una nueva matrícula");
                             modify = modificar.next();
-                            listagF.get(0).setmatricula(modify);
+                            listagF.get(id).setmatricula(modify);
                         }
                     }
                     break;
