@@ -48,7 +48,7 @@ public class dni {
             // PEDIMOS LOS DATOS
             System.out.println("Introduzca un número [Longitud de 8 números]: ");
             nDni = sc.nextInt();
-            System.out.println("Introduzca una letra para el DNI");
+            System.out.println("Introduzca una letra para el DNI [Debe ser en Mayúsculas]: ");
             lDniUsuario = sc.next().charAt(0);
             // CONTROL DE ERROR NUMERO DNI
             while (nDni < 0 || nDni > 99999999){
