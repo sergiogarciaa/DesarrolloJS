@@ -33,7 +33,7 @@ public class dni {
     //Sobre escritura toString
     @Override
     public String toString() {
-        return "DNI [Numero=" + numero + ", letra=" + letra + ", composición=" + numero + " - " + letra +"]";
+        return "[Numero = " + numero + ", letra=" + letra + ", composición = " + numero + "-" + letra +"]";
     }
 
 
@@ -43,6 +43,7 @@ public class dni {
         int nDni = 1;
         char lDniUsuario = '-';
         char lDniGenerada;
+        String pista;
         char[] calculoLetra = {'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'};
             // PEDIMOS LOS DATOS
             System.out.println("Introduzca un número [Longitud de 8 números]: ");
@@ -50,26 +51,28 @@ public class dni {
             System.out.println("Introduzca una letra para el DNI");
             lDniUsuario = sc.next().charAt(0);
             // CONTROL DE ERROR NUMERO DNI
-            if(nDni < 0 || nDni > 99999999){
+            while (nDni < 0 || nDni > 99999999){
                 System.err.println("El número introducido no es válido");
                 System.out.println("Introduzca un número [Longitud de 8 números]: ");
                 nDni = sc.nextInt();
             }
-            else {
+
                 // CALCULO DE LETRA Y CONTROL DE ERROR.
                 lDniGenerada = (char) (nDni % 23);
                 lDniGenerada = calculoLetra[lDniGenerada];
 
-                if (lDniGenerada != lDniUsuario){
+               while (lDniGenerada != lDniUsuario){
                     System.err.println("La letra que ha indicado no es correcta");
+                    System.out.println("Quiere saber la letra?: ");
+                    pista = sc.next().toLowerCase();
+                           if (pista.equals("si")) {
+                               System.out.println(lDniGenerada);
+                           }
                     System.out.println("Vuelve a introducir la letra");
                     lDniUsuario = sc.next().charAt(0);
                 }
-
-                else{
                     System.out.println("La letra introducida y el número son correctos.");
-                }
-            }
+
 
 
 
