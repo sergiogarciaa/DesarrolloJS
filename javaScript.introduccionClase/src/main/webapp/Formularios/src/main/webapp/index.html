@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="script/main.js"></script>
+</head>
+<body>
+	<h1>FORMULARIO BÁSICO</h1>
+    <form name="formularioEntrada">
+        <p>Introduce un valor</p>
+        <input type="text" size="10" name="valor" value="1"/>
+        <input type="button" name="guardarValor" value="Confirmar" onClick="guardar()"/>
+    </form>
+    
+    <form>
+    	<h4>Calculadora Falsa</h4>
+    	<input type="text" size="10" name="operacion" value="1+1"/>
+    	<input type="button" name="gOperacion" value="Calcular" onClick="calculadora(this.form)"/>
+    	<input type="text" size="10" name="resultado" value=""/>
+    	<button type="reset">Resetear</button>
+    </form>
+    
+   	<form>
+   		<h4>Calculadora Peso</h4>
+   		Edad:
+   		<input type="text" size="10" name="edad" value="18"/>
+   		<br>
+   		Altura en centimetros: 
+    	<input type="text" size="10" name="altura" value="170"/>
+    	<br> 
+		Sexo Biológico:
+		<select id="sexo">
+			<option value="hombre">Hombre</option>
+			<option value="mujer">Mujer</option>
+		</select>
+    	<br>
+    	<input type="button" name="gOperacion" value="Calcular Peso" onClick="calculadoraPeso(this.form)"/>
+    	<input type="text" size="10" name="peso" value=""/>
+    	<button type="reset">Resetear</button>
+   	</form>
+</body>
+</html>
